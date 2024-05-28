@@ -2,6 +2,11 @@
 
 <main>
     <ul id="users">
-        <app-user /> <!-- Shortcut for UserComponent -->
+        <app-user [avatar]="users[0].avatar"
+                    [name]="users[0].name"
+        />
+        <app-user [avatar]="users[1].avatar"
+                    [name]="users[1].name"
+        />
     </ul>
 </main>

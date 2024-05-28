@@ -1,11 +1,9 @@
 <div>
-    <button (click)="onSelectUser()" > <!--Click event listener-->
+    <button (click)="onSelectUser()" > 
         <img 
-            [src]="imagePath()" 
-            [alt]="'User ' + selectedUser().name + ' photo'"/>
-
-            <!--with signals, use () as functions-->
-
-        <span>{{ selectedUser().name }}</span>
+            [src]="imagePath" 
+            [alt]="'User ' + name + ' photo'"
+        />
+        <span>{{ name }}</span>
     </button>
 </div>

@@ -1,8 +1,5 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { DUMMY_USERS } from '../dummy-user';
-
-const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
 
 @Component({
   selector: 'app-user',
@@ -13,28 +10,15 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
 })
 export class UserComponent {
 
-  /*
-    SIGNALS: notify angular when a value changes 
-    or the UI needs to be updated.
-  */
-  selectedUser = signal(DUMMY_USERS[randomIndex]);
+  @Input() avatar!: string;
+  @Input() name!: string;
 
-  /*
-    this is the manner to use a computed value with signals
-    Angular sets up a subscription to the signal and updates
-    the value whenever the signal changes, and only then angular
-    recompute the imgPath value.
-  */
-  imagePath = computed( () => 'assets/users/' + this.selectedUser().avatar);
+  get imagePath(){
+    return 'assets/users/' + this.avatar;
+  }
 
-  // get imagePath(){ // as it has the key word GET, we use it in the html like a property.
-  //   return 'assets/users/' + this.selectedUser.avatar;
-  // }
 
   onSelectUser() {
-    const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
-    this.selectedUser.set(DUMMY_USERS[randomIndex]);
-
   }
 
 }
