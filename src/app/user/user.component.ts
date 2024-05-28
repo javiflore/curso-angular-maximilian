@@ -14,7 +14,12 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
 export class UserComponent {
   selectedUser = DUMMY_USERS[randomIndex];
 
-  get imagePath(){
+  get imagePath(){ // as it has the key word GET, we use it in the html like a property.
     return 'assets/users/' + this.selectedUser.avatar;
   }
+
+  onSelectUser() {
+    console.log('User clicked!');
+  }
+
 }
