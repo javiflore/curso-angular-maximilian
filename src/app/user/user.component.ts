@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, computed, input } from '@angular/core';
 
 
 @Component({
@@ -10,12 +10,21 @@ import { Component, Input } from '@angular/core';
 })
 export class UserComponent {
 
-  @Input() avatar!: string;
-  @Input() name!: string;
+  /** 
+   * input() decorator is used to define input properties with SIGNALS
+   * using input() angular knows thas avatar and name are inputs property
+   * and a signal.
+   * 
+   * In this case, we CAN'T use .set() to change the signal, 
+   * because it's a read only signal.
+   */
+  
+  avatar = input.required<string>();
+  name = input.required<string>();
 
-  get imagePath(){
-    return 'assets/users/' + this.avatar;
-  }
+  imagePath = computed(() => {
+    return 'assets/users/' + this.avatar();
+  });
 
 
   onSelectUser() {
