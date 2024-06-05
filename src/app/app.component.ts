@@ -15,6 +15,8 @@ export class AppComponent {
 
   users = DUMMY_USERS;
 
-  
+  onUserSelected(id: string) {
+    console.log('User selected:', id);
+  }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input, computed, input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 
 @Component({
@@ -9,25 +9,18 @@ import { Component, Input, computed, input } from '@angular/core';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
+  @Input({ required: true }) id!: string;
+  @Input({ required: true }) avatar!: string;
+  @Input({ required: true }) name!: string;
+  @Output() userSelected = new EventEmitter();
 
-  /** 
-   * input() decorator is used to define input properties with SIGNALS
-   * using input() angular knows thas avatar and name are inputs property
-   * and a signal.
-   * 
-   * In this case, we CAN'T use .set() to change the signal, 
-   * because it's a read only signal.
-   */
-  
-  avatar = input.required<string>();
-  name = input.required<string>();
-
-  imagePath = computed(() => {
-    return 'assets/users/' + this.avatar();
-  });
+  get imagePath(){
+    return 'assets/users/' + this.avatar;
+  }
 
 
   onSelectUser() {
+    this.userSelected.emit(this.id);
   }
 
 }
