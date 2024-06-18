@@ -16,14 +16,14 @@ export class AppComponent {
 
   users = DUMMY_USERS;
 
-  nameSelected = '';
+  selectedUserId?: string;
+
+  get selectedUser(){
+    return this.users.find(user => user.id === this.selectedUserId);
+  }
 
   onUserSelected(id: string) {
-    this.users.find(user => {
-      if (user.id === id) {
-        this.nameSelected = user.name;
-      }
-    })
+    this.selectedUserId = id;
   }
 
 }
