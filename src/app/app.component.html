@@ -2,24 +2,16 @@
 
 <main>
     <ul id="users">
-
-        <!-- with TRACK youre saying angular which unique identification criteria can
-            be assigned to every list item -->
-        @for(user of users; track user.id){
-            <li>
-                <app-user 
-                    [user]="user"
-                    (userSelected)="onUserSelected($event)"
-                />  
-            </li> 
-        }
+        <li *ngFor="let user of users">
+            <app-user 
+                [user]="user"
+                (userSelected)="onUserSelected($event)"
+            />  
+        </li>
     </ul>
-
-    <!-- if selectedUser is not null, shows/renders the tasks component -->
-    @if(selectedUser){
-        <app-tasks [name]="selectedUser.name"/>
-    } @else {
+    <app-tasks *ngIf="selectedUser; else fallback" [name]="selectedUser!.name"/>
+    <ng-template #fallback>
         <p id="fallback">Click on a user to see their tasks</p>
-    }
-
+    </ng-template>
+    
 </main>
