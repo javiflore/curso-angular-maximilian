@@ -9,6 +9,12 @@ import { Component, Input } from '@angular/core';
 })
 export class TasksComponent {
 
-  @Input({ required: true }) name!: string;
+  /**
+   * the question mark makes the property OPTIONAL.
+   * If the property is not provided, it will be UNDEFINED.
+  */
+  @Input() name?: string;
+
+  // @Input() name: string | undefined; // the same as above
 
 }
