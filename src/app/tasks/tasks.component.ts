@@ -1,20 +1,49 @@
 import { Component, Input } from '@angular/core';
+import { TaskComponent } from './task/task.component';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [],
+  imports: [TaskComponent, NgFor, NgIf],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
 
-  /**
-   * the question mark makes the property OPTIONAL.
-   * If the property is not provided, it will be UNDEFINED.
-  */
-  @Input() name?: string;
-
+  @Input({ required: true }) name!: string;
   // @Input() name: string | undefined; // the same as above
+
+  @Input({ required: true }) id?: string | undefined;
+
+  tasks = [
+    { 
+      id: 't1', 
+      userId: 'u1',
+      title: 'Master Angular',
+      summary: 'Learn Angular to build web applications.',
+      dueDate: '2021-12-31',
+      completed: false
+    },
+    { 
+      id: 't2',  
+      userId: 'u2',
+      title: 'AI and ML',
+      summary: 'Learn AI and ML to build intelligent applications.',
+      dueDate: '2021-12-31',
+      completed: false
+    },{ 
+      id: 't3',  
+      userId: 'u3',
+      title: 'Software Engineering',
+      summary: 'Learn software engineering to build scalable applications.',
+      dueDate: '2021-12-31',
+      completed: false
+    }
+  ];
+
+  get selectedUserTasks(){
+    return this.tasks.filter(task => task.userId === this.id);
+  }
 
 }
