@@ -4,17 +4,19 @@
   <form>
     <p>
       <label for="title">Title</label>
-      <input type="text" id="title" name="title" />
+      <!-- NngModel directive helps with extracting and changing values and support 2way-binding -->
+      <!-- directives, unlike components, DONT have a TEMPLATE -->
+      <input type="text" id="title" name="title" [(ngModel)]="enteredTitle" />
     </p>
 
     <p>
       <label for="summary">Summary</label>
-      <textarea id="summary" rows="5" name="summary"></textarea>
+      <textarea id="summary" rows="5" name="summary" [(ngModel)]="enteredSummary"></textarea>
     </p>
 
     <p>
       <label for="due-date">Due Date</label>
-      <input type="date" id="due-date" name="due-date" />
+      <input type="date" id="due-date" name="due-date" [(ngModel)]="enteredDueDate"/>
     </p>
 
     <p class="actions">
