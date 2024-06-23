@@ -1,13 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 
-interface Task {
-  id: string;
-  title: string;
-  summary: string;
-  dueDate: string;
-  completed: boolean;
-}
+import { Task } from './task.model';
 
 @Component({
   selector: 'app-task',
