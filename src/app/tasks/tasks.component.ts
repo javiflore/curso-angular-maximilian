@@ -46,4 +46,11 @@ export class TasksComponent {
     return this.tasks.filter(task => task.userId === this.id);
   }
 
+  onCompleteTask(taskId: string){
+    /**
+     * filter: creates a new array with tasks that dont have been completed
+     */
+    this.tasks = this.tasks.filter(task => task.id !== taskId);
+  }
+
 }
