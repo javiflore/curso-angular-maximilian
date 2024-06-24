@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 
 import { type Task } from './task.model';
 import { CardComponent } from '../../shares/card/card.component';
@@ -7,7 +7,7 @@ import { CardComponent } from '../../shares/card/card.component';
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [NgFor, NgIf, CardComponent],
+  imports: [NgFor, NgIf, CardComponent, DatePipe],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css'
 })
