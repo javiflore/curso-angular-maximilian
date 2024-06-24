@@ -1,14 +1,11 @@
 import { Component, Input, inject } from '@angular/core';
-import { DatePipe, NgFor, NgIf } from '@angular/common';
 
 import { type Task } from './task.model';
-import { CardComponent } from '../../shares/card/card.component';
 import { TasksService } from '../tasks.service';
 
 @Component({
   selector: 'app-task',
-  standalone: true,
-  imports: [NgFor, NgIf, CardComponent, DatePipe],
+  standalone: false,
   templateUrl: './task.component.html',
   styleUrl: './task.component.css'
 })
