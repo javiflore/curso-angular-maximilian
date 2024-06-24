@@ -1,5 +1,6 @@
 <app-new-task *ngIf="isAddingTask" 
-    (closeModal)="onCancelModal()">
+    (closeModal)="onCancelModal()"
+    (add)="onAddTask($event)">
 </app-new-task>
 <section id="tasks">
     <header>

@@ -1,7 +1,7 @@
 <div class="backdrop" (click)="onCloseModal()"></div>
 <dialog open>
   <h2>Add Task</h2>
-  <form>
+  <form (ngSubmit)="onSubmit()">
     <p>
       <label for="title">Title</label>
       <!-- NngModel directive helps with extracting and changing values and support 2way-binding -->

@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { NgFor, NgIf } from '@angular/common';
 import { NewTaskComponent } from './new-task/new-task.component';
+import {type NewTask } from './task/task.model';
 
 @Component({
   selector: 'app-tasks',
@@ -61,6 +62,19 @@ export class TasksComponent {
   }
 
   onCancelModal(){
+    this.isAddingTask = false;
+  }
+
+  
+  onAddTask(taskData: NewTask){
+    this.tasks.unshift({
+      id: new Date().getTime().toString(),
+      userId: this.id ?? '', // Add nullish coalescing operator to provide a default value
+      title: taskData.title,
+      summary: taskData.summary,
+      dueDate: taskData.dueDate,
+      completed: false
+    });
     this.isAddingTask = false;
   }
 
