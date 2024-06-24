@@ -3,6 +3,7 @@ import { TaskComponent } from './task/task.component';
 import { NgFor, NgIf } from '@angular/common';
 import { NewTaskComponent } from './new-task/new-task.component';
 import {type NewTask } from './task/task.model';
+import { TasksService } from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -16,65 +17,27 @@ export class TasksComponent {
   @Input({ required: true }) name!: string;
   // @Input() name: string | undefined; // the same as above
 
-  @Input({ required: true }) id?: string | undefined;
+  @Input({ required: true }) id!: string;
   isAddingTask = false;
 
+  constructor(private taskService: TasksService){}
 
-  tasks = [
-    { 
-      id: 't1', 
-      userId: 'u1',
-      title: 'Master Angular',
-      summary: 'Learn Angular to build web applications.',
-      dueDate: '2021-12-31',
-      completed: false
-    },
-    { 
-      id: 't2',  
-      userId: 'u2',
-      title: 'AI and ML',
-      summary: 'Learn AI and ML to build intelligent applications.',
-      dueDate: '2021-12-31',
-      completed: false
-    },{ 
-      id: 't3',  
-      userId: 'u3',
-      title: 'Software Engineering',
-      summary: 'Learn software engineering to build scalable applications.',
-      dueDate: '2021-12-31',
-      completed: false
-    }
-  ];
 
   get selectedUserTasks(){
-    return this.tasks.filter(task => task.userId === this.id);
-  }
-
-  onCompleteTask(taskId: string){
-    /**
-     * filter: creates a new array with tasks that dont have been completed
-     */
-    this.tasks = this.tasks.filter(task => task.id !== taskId);
+    return this.taskService.getUserTasks(this.id);
   }
 
   onStartAddTask(){
     this.isAddingTask = true;
   }
 
-  onCancelModal(){
+  onCloseModal(){
     this.isAddingTask = false;
   }
 
   
   onAddTask(taskData: NewTask){
-    this.tasks.unshift({
-      id: new Date().getTime().toString(),
-      userId: this.id ?? '', // Add nullish coalescing operator to provide a default value
-      title: taskData.title,
-      summary: taskData.summary,
-      dueDate: taskData.dueDate,
-      completed: false
-    });
+
     this.isAddingTask = false;
   }
 
